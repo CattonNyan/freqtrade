@@ -6,231 +6,164 @@
 [![Documentation](https://readthedocs.org/projects/freqtrade/badge/)](https://www.freqtrade.io)
 [![Discord Server](https://img.shields.io/badge/Freqtrade_Discord-4E4E4E?logo=discord)](https://discord.gg/p7nuUNVfP7)
 
-Freqtrade is a free and open source crypto trading bot written in Python. It is designed to support all major exchanges and be controlled via Telegram or webUI. It contains backtesting, plotting and money management tools as well as strategy optimization by machine learning.
+**Freqtrade**는 파이썬(Python)으로 개발된 무료 오픈소스 암호화폐 자동매매 봇입니다. 주요 글로벌 및 국내 거래소를 폭넓게 지원하며, 텔레그램(Telegram) 또는 웹 UI(FreqUI)를 통해 원격으로 손쉽게 제어할 수 있습니다. 백테스팅, 데이터 시각화, 자금 관리 기능뿐만 아니라 머신러닝(FreqAI)을 활용한 전략 최적화 도구를 기본 탑재하고 있습니다.
 
 ![freqtrade](https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/assets/freqtrade-screenshot.png)
 
-## Disclaimer
+---
 
-This software is for educational purposes only. Do not risk money which
-you are afraid to lose. USE THE SOFTWARE AT YOUR OWN RISK. THE AUTHORS
-AND ALL AFFILIATES ASSUME NO RESPONSIBILITY FOR YOUR TRADING RESULTS.
+## ⚠️ 면책 조항 (Disclaimer)
 
-Always start by running a trading bot in Dry-Run and do not engage money
-before you understand how it works and what profit/loss you should
-expect.
+* 본 소프트웨어는 **교육 및 연구 목적**으로만 제공됩니다.
+* 손실을 감당할 수 없는 자금으로 투자하지 마십시오.
+* **소프트웨어의 사용에 따른 모든 책임은 사용자 본인에게 있습니다.** 개발자 및 기여자는 거래 결과에 대해 어떠한 법적/재정적 책임도 지지 않습니다.
+* 실제 자금을 투입하기 전에 **반드시 가상 매매(Dry-run) 모드로 충분히 테스트**하고, 봇의 동작 메커니즘과 위험성을 완벽히 이해한 후 운용하시기 바랍니다.
+* 파이썬 및 프로그래밍 기초 지식을 갖추는 것을 강력히 권장하며, 소스 코드와 공식 문서를 꼼꼼히 읽어보시기 바랍니다.
 
-We strongly recommend you to have coding and Python knowledge. Do not
-hesitate to read the source code and understand the mechanism of this bot.
+---
 
-## Supported Exchange marketplaces
+## 🌟 주요 기능 (Features)
 
-Please read the [exchange-specific notes](https://www.freqtrade.io/en/stable/exchanges/) to learn about special configurations that maybe needed for each exchange.
+* [x] **Python 3.11+ 기반**: Windows, macOS, Linux 등 모든 주요 OS에서 원활하게 구동.
+* [x] **데이터 영속성**: SQLite 데이터베이스를 통해 거래 내역과 주문 상태를 안정적으로 기록.
+* [x] **가상 모의투자(Dry-run)**: 실제 자금 입금 없이 실시간 시장 데이터로 안전하게 전략 시뮬레이션.
+* [x] **강력한 백테스팅(Backtesting)**: 과거 캔들 데이터 기반의 정밀한 전략 수익률 및 MDD 분석.
+* [x] **머신러닝 기반 전략 최적화**: 하이퍼옵트(Hyperopt)를 통한 파라미터 튜닝 및 FreqAI 적응형 예측 모델 지원.
+* [x] **Open Interest(미결제약정) 캔들 지원**: Freqtrade 2026.9+ 최신 엔진의 파생상품 자금 유입 데이터 분석 지원.
+* [x] **화이트리스트 & 블랙리스트 필터**: 거래할 코인 페어를 정적/동적으로 유연하게 필터링.
+* [x] **내장 웹 대시보드 (FreqUI)**: 브라우저에서 실시간 차트, 포지션 현황, 수익률을 한눈에 모니터링.
+* [x] **텔레그램(Telegram) 원격 제어**: 스마트폰으로 즉시 진입/청산 알림 수신 및 명령 실행.
+* [x] **원화(KRW) 및 법정화폐 손익 표기**: USD뿐만 아니라 KRW 등 원하는 통화로 손익 자동 환산 표시.
 
-### Supported Spot Exchanges
+---
 
-- [X] [Binance](https://www.binance.com/)
-- [X] [BingX](https://bingx.com/invite/0EM9RX)
-- [X] [Bitget](https://www.bitget.com/)
-- [X] [Bybit EU](https://bybit.eu/)
-- [X] [Bybit](https://bybit.com/)
-- [X] [Gate EU](https://www.gate.com/en-eu)
-- [X] [Gate](https://www.gate.com/ref/6266643)
-- [X] [HTX](https://www.htx.com/)
-- [X] [Hyperliquid](https://hyperliquid.xyz/) (A decentralized exchange, or DEX)
-- [X] [Kraken](https://kraken.com/)
-- [X] [MyOKX](https://okx.com/) (OKX EEA)
-- [X] [OKX](https://okx.com/)
-- [ ] [potentially many others](https://github.com/ccxt/ccxt/). _(We cannot guarantee they will work)_
+## 🏛️ 지원 거래소
 
-### Supported Futures Exchanges
+각 거래소별 상세 설정과 주의사항은 [거래소별 공식 안내 문서](https://www.freqtrade.io/en/stable/exchanges/)를 참조하십시오.
 
-- [X] [Binance](https://www.binance.com/)
-- [X] [Bitget](https://www.bitget.com/)
-- [X] [Bybit](https://bybit.com/)
-- [X] [Gate](https://www.gate.com/ref/6266643)
-- [X] [Hyperliquid](https://hyperliquid.xyz/) (A decentralized exchange, or DEX)
-- [X] [Kraken](https://www.kraken.com/features/futures)
-- [X] [OKX](https://okx.com/)
+### 현물 (Spot) 거래소
+* [X] [바이낸스 (Binance)](https://www.binance.com/)
+* [X] [업비트 (Upbit)](https://upbit.com/) - *템플릿 제공: `config.upbit.example.json`*
+* [X] [바이비트 (Bybit)](https://bybit.com/)
+* [X] [비트겟 (Bitget)](https://www.bitget.com/)
+* [X] [OKX](https://okx.com/)
+* [X] [크라켄 (Kraken)](https://kraken.com/)
+* [X] [하이퍼리퀴드 (Hyperliquid DEX)](https://hyperliquid.xyz/)
+* [X] [Gate.io](https://www.gate.com/)
+* [ ] [CCXT 지원 거래소 다수](https://github.com/ccxt/ccxt/)
 
-Please make sure to read the [exchange specific notes](https://www.freqtrade.io/en/stable/exchanges/), as well as the [trading with leverage](https://www.freqtrade.io/en/stable/leverage/) documentation before diving in.
+### 선물 (Futures) 거래소
+* [X] [바이낸스 선물 (Binance Futures)](https://www.binance.com/) - *템플릿 제공: `config.binance-futures.example.json`*
+* [X] [바이비트 선물 (Bybit Futures)](https://bybit.com/)
+* [X] [비트겟 선물 (Bitget Futures)](https://www.bitget.com/)
+* [X] [하이퍼리퀴드 (Hyperliquid DEX)](https://hyperliquid.xyz/)
+* [X] [OKX 선물](https://okx.com/)
 
-### Community tested
+---
 
-Exchanges confirmed working by the community:
+## ⚡ 빠른 시작 (Quick Start)
 
-- [X] [Bitvavo](https://bitvavo.com/)
-- [X] [Kucoin](https://www.kucoin.com/)
+### 1. 환경 설정 파일 준비
+```bash
+# 기본 모의투자 설정 파일 복사
+cp user_data/config.dryrun.example.json user_data/config.json
 
-## Documentation
-
-We invite you to read the bot documentation to ensure you understand how the bot is working.
-
-Please find the complete documentation on the [freqtrade website](https://www.freqtrade.io).
-
-## Features
-
-- [x] **Based on Python 3.11+**: For botting on any operating system - Windows, macOS and Linux.
-- [x] **Persistence**: Persistence is achieved through sqlite.
-- [x] **Dry-run**: Run the bot without paying money.
-- [x] **Backtesting**: Run a simulation of your buy/sell strategy.
-- [x] **Strategy Optimization by machine learning**: Use machine learning to optimize your buy/sell strategy parameters with real exchange data.
-- [X] **Adaptive prediction modeling**: Build a smart strategy with FreqAI that self-trains to the market via adaptive machine learning methods. [Learn more](https://www.freqtrade.io/en/stable/freqai/)
-- [x] **Whitelist crypto-currencies**: Select which crypto-currency you want to trade or use dynamic whitelists.
-- [x] **Blacklist crypto-currencies**: Select which crypto-currency you want to avoid.
-- [x] **Builtin WebUI**: Builtin web UI to manage your bot.
-- [x] **Manageable via Telegram**: Manage the bot with Telegram.
-- [x] **Display profit/loss in fiat**: Display your profit/loss in fiat currency.
-- [x] **Performance status report**: Provide a performance status of your current trades.
-
-## Quick start
-
-Please refer to the [Docker Quickstart documentation](https://www.freqtrade.io/en/stable/docker_quickstart/) on how to get started quickly.
-
-For further (native) installation methods, please refer to the [Installation documentation page](https://www.freqtrade.io/en/stable/installation/).
-
-## Basic Usage
-
-### Bot commands
-
-```
-usage: freqtrade [-h] [-V]
-                 {trade,create-userdir,new-config,show-config,new-strategy,download-data,convert-data,convert-trade-data,trades-to-ohlcv,list-data,backtesting,backtesting-show,backtesting-analysis,edge,hyperopt,hyperopt-list,hyperopt-show,list-exchanges,list-markets,list-pairs,list-strategies,list-hyperoptloss,list-freqaimodels,list-timeframes,show-trades,test-pairlist,convert-db,install-ui,plot-dataframe,plot-profit,webserver,strategy-updater,lookahead-analysis,recursive-analysis}
-                 ...
-
-Free, open source crypto trading bot
-
-positional arguments:
-  {trade,create-userdir,new-config,show-config,new-strategy,download-data,convert-data,convert-trade-data,trades-to-ohlcv,list-data,backtesting,backtesting-show,backtesting-analysis,edge,hyperopt,hyperopt-list,hyperopt-show,list-exchanges,list-markets,list-pairs,list-strategies,list-hyperoptloss,list-freqaimodels,list-timeframes,show-trades,test-pairlist,convert-db,install-ui,plot-dataframe,plot-profit,webserver,strategy-updater,lookahead-analysis,recursive-analysis}
-    trade               Trade module.
-    create-userdir      Create user-data directory.
-    new-config          Create new config
-    show-config         Show resolved config
-    new-strategy        Create new strategy
-    download-data       Download backtesting data.
-    convert-data        Convert candle (OHLCV) data from one format to
-                        another.
-    convert-trade-data  Convert trade data from one format to another.
-    trades-to-ohlcv     Convert trade data to OHLCV data.
-    list-data           List downloaded data.
-    backtesting         Backtesting module.
-    backtesting-show    Show past Backtest results
-    backtesting-analysis
-                        Backtest Analysis module.
-    hyperopt            Hyperopt module.
-    hyperopt-list       List Hyperopt results
-    hyperopt-show       Show details of Hyperopt results
-    list-exchanges      Print available exchanges.
-    list-markets        Print markets on exchange.
-    list-pairs          Print pairs on exchange.
-    list-strategies     Print available strategies.
-    list-hyperoptloss   Print available hyperopt loss functions.
-    list-freqaimodels   Print available freqAI models.
-    list-timeframes     Print available timeframes for the exchange.
-    show-trades         Show trades.
-    test-pairlist       Test your pairlist configuration.
-    convert-db          Migrate database to different system
-    install-ui          Install FreqUI
-    plot-dataframe      Plot candles with indicators.
-    plot-profit         Generate plot showing profits.
-    webserver           Webserver module.
-    strategy-updater    updates outdated strategy files to the current version
-    lookahead-analysis  Check for potential look ahead bias.
-    recursive-analysis  Check for potential recursive formula issue.
-
-options:
-  -h, --help            show this help message and exit
-  -V, --version         show program's version number and exit
+# 환경변수 파일 복사 (필요 시 API 키 입력)
+cp .env.example .env
 ```
 
-### Telegram RPC commands
+### 2. Docker Compose로 1분 만에 실행 (가장 권장)
+```bash
+# 컨테이너 및 FreqUI 웹서버 백그라운드 구동
+docker compose up -d
 
-Telegram is not mandatory. However, this is a great way to control your bot. More details and the full command list on the [documentation](https://www.freqtrade.io/en/stable/telegram-usage/)
+# 웹 브라우저에서 FreqUI 대시보드 접속:
+# 주소: http://localhost:8080
+# 기본 계정: freqtrader / ChangeMeStrongPassword123 (config.json에서 변경 가능)
+```
 
-- `/start`: Starts the trader.
-- `/stop`: Stops the trader.
-- `/stopentry`: Stop entering new trades.
-- `/status <trade_id>|[table]`: Lists all or specific open trades.
-- `/profit [<n>]`: Lists cumulative profit from all finished trades, over the last n days.
-- `/profit_long [<n>]`: Lists cumulative profit from all finished long trades, over the last n days.
-- `/profit_short [<n>]`: Lists cumulative profit from all finished short trades, over the last n days.
-- `/forceexit <trade_id>|all`: Instantly exits the given trade (Ignoring `minimum_roi`).
-- `/fx <trade_id>|all`: Alias to `/forceexit`
-- `/performance`: Show performance of each finished trade grouped by pair
-- `/balance`: Show account balance per currency.
-- `/daily <n>`: Shows profit or loss per day, over the last n days.
-- `/help`: Show help message.
-- `/version`: Show version.
+---
 
+## 📦 본 저장소 특화 추가 구성품
 
-## Development branches
+본 저장소는 실전 및 백테스팅 편의를 높이기 위해 아래의 전략과 유틸리티 도구를 기본 탑재하고 있습니다:
 
-The project is currently setup in two main branches:
+### 1. 내장 커스텀 전략 4종 (`user_data/strategies/`)
+* **[`KoreanStarterStrategy.py`](user_data/strategies/KoreanStarterStrategy.py)**: 입문자 및 모의거래용 안전 추세추종 전략 (15m, EMA200 + ADX20 + RSI).
+* **[`MultiTimeframeAtrStrategy.py`](user_data/strategies/MultiTimeframeAtrStrategy.py)**: 1h 매크로 추세(EMA 50/200) + 5m 진입 타이밍 + 동적 본전/트레일링 익절 전략.
+* **[`OpenInterestTrendStrategy.py`](user_data/strategies/OpenInterestTrendStrategy.py)**: **선물 전용** 롱/숏 전략 (Freqtrade 최신 `open_interest` 미결제약정 급증 및 펀딩비 편향 분석).
+* **[`VibeRsiStrategy.py`](user_data/strategies/VibeRsiStrategy.py)**: 5m RSI 과매도 반등 + EMA 정배열 단타 전략.
 
-- `develop` - This branch has often new features, but might also contain breaking changes. We try hard to keep this branch as stable as possible.
-- `stable` - This branch contains the latest stable release. This branch is generally well tested.
-- `feat/*` - These are feature branches, which are being worked on heavily. Please don't use these unless you want to test a specific feature.
+### 2. 유틸리티 스크립트 (`scripts/`)
+* **[`download_market_data.py`](scripts/download_market_data.py)**: 현물/선물 캔들 데이터 및 미결제약정(OI) 데이터를 원클릭으로 일괄 다운로드.
+  ```bash
+  # 60일치 데이터 일괄 다운로드
+  python scripts/download_market_data.py --days 60
+  # 선물 데이터 + 미결제약정(OI) 캔들 다운로드
+  python scripts/download_market_data.py --trading-mode futures --include-oi --days 30
+  ```
+* **[`validate_strategy.py`](scripts/validate_strategy.py)**: 전략 코드의 문법 오류, 필수 메서드 누락, 룩어헤드 편향(미래 데이터 참조)을 정적 분석.
+  ```bash
+  python scripts/validate_strategy.py "user_data/strategies/*.py"
+  ```
+* **[`report_backtest.py`](scripts/report_backtest.py)**: 백테스트 JSON 결과 파일을 터미널 요약표 및 GitHub Markdown 보고서로 자동 변환.
+  ```bash
+  python scripts/report_backtest.py -o backtest_summary.md
+  ```
 
-## Support
+### 3. 검증 단위 테스트 스위트
+* 전략 규격과 안전성을 자동 검증하는 단위 테스트:
+  ```bash
+  python -m unittest tests/strategy/test_custom_user_strategies.py
+  ```
 
-### Help / Discord
+---
 
-For any questions not covered by the documentation or for further information about the bot, or to simply engage with like-minded individuals, we encourage you to join the Freqtrade [discord server](https://discord.gg/p7nuUNVfP7).
+## 💻 기본 명령어 안내
 
-### [Bugs / Issues](https://github.com/freqtrade/freqtrade/issues?q=is%3Aissue)
+### 주요 CLI 명령어
 
-If you discover a bug in the bot, please
-[search the issue tracker](https://github.com/freqtrade/freqtrade/issues?q=is%3Aissue)
-first. If it hasn't been reported, please
-[create a new issue](https://github.com/freqtrade/freqtrade/issues/new/choose) and
-ensure you follow the template guide so that the team can assist you as
-quickly as possible.
+```bash
+# 봇 실시간 거래 (Dry-run 또는 Live)
+freqtrade trade --config user_data/config.json --strategy KoreanStarterStrategy
 
-For every [issue](https://github.com/freqtrade/freqtrade/issues/new/choose) created, kindly follow up and mark satisfaction or reminder to close issue when equilibrium ground is reached.
+# 과거 데이터 백테스팅
+freqtrade backtesting --config user_data/config.json --strategy MultiTimeframeAtrStrategy --timerange 20260101-
 
---Maintain github's [community policy](https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct)--
+# 하이퍼옵트(파라미터 최적화)
+freqtrade hyperopt --config user_data/config.json --strategy KoreanStarterStrategy --hyperopt-loss SharpeHyperOptLoss --epochs 100
 
-### [Feature Requests](https://github.com/freqtrade/freqtrade/labels/enhancement)
+# 룩어헤드 편향(과적합) 분석
+freqtrade lookahead-analysis --config user_data/config.json --strategy KoreanStarterStrategy
+```
 
-Have you a great idea to improve the bot you want to share? Please,
-first search if this feature was not [already discussed](https://github.com/freqtrade/freqtrade/labels/enhancement).
-If it hasn't been requested, please
-[create a new request](https://github.com/freqtrade/freqtrade/issues/new/choose)
-and ensure you follow the template guide so that it does not get lost
-in the bug reports.
+### 텔레그램(Telegram) 원격 명령어
+* `/start`: 자동매매 시작
+* `/stop`: 자동매매 일시정지
+* `/stopentry`: 신규 진입 중단 (기존 포지션 청산만 유지)
+* `/status`: 현재 오픈된 포지션 상태 조회
+* `/profit`: 최근 N일간 누적 손익 리포트 조회
+* `/balance`: 계좌 잔고 및 코인별 보유 현황 조회
+* `/forceexit <trade_id>|all`: 지정 또는 전체 포지션 즉시 시장가 청산
 
-### [Pull Requests](https://github.com/freqtrade/freqtrade/pulls)
+---
 
-Feel like the bot is missing a feature? We welcome your pull requests!
+## ⚙️ 시스템 요구 사양
 
-Please read the
-[Contributing document](https://github.com/freqtrade/freqtrade/blob/develop/CONTRIBUTING.md)
-to understand the requirements before sending your pull-requests.
+### 하드웨어 권장 사양
+* **최소 사양**: 2vCPU, RAM 2GB, 디스크 여유 공간 1GB 이상
+* 클라우드 VPS(AWS, GCP, Oracle Cloud, Vultr 등) 환경 구동을 권장합니다.
 
-Coding is not a necessity to contribute - maybe start with improving the documentation?
-Issues labeled [good first issue](https://github.com/freqtrade/freqtrade/labels/good%20first%20issue) can be good first contributions, and will help get you familiar with the codebase.
+### 소프트웨어 요구 사항
+* [Python >= 3.11](http://docs.python-guide.org/en/latest/starting/installation/)
+* [Docker](https://www.docker.com/products/docker) (가장 권장)
+* [TA-Lib](https://ta-lib.github.io/ta-lib-python/)
+* 정확한 시스템 시간 (거래소 API 통신 오류를 방지하기 위해 NTP 서버 동기화 필수)
 
-**Note** before starting any major new feature work, *please open an issue describing what you are planning to do* or talk to us on [discord](https://discord.gg/p7nuUNVfP7) (please use the #dev channel for this). This will ensure that interested parties can give valuable feedback on the feature, and let others know that you are working on it.
+---
 
-**Important:** Always create your PR against the `develop` branch, not `stable`.
+## 🤝 기여 및 커뮤니티
 
-## Requirements
-
-### Up-to-date clock
-
-The clock must be accurate, synchronized to a NTP server very frequently to avoid problems with communication to the exchanges.
-
-### Minimum hardware required
-
-To run this bot we recommend you a cloud instance with a minimum of:
-
-- Minimal (advised) system requirements: 2GB RAM, 1GB disk space, 2vCPU
-
-### Software requirements
-
-- [Python >= 3.11](http://docs.python-guide.org/en/latest/starting/installation/)
-- [pip](https://pip.pypa.io/en/stable/installing/)
-- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- [TA-Lib](https://ta-lib.github.io/ta-lib-python/)
-- [virtualenv](https://virtualenv.pypa.io/en/stable/installation.html) (Recommended)
-- [Docker](https://www.docker.com/products/docker) (Recommended)
+* 공식 영문 문서: [https://www.freqtrade.io](https://www.freqtrade.io)
+* 공식 디스코드: [Freqtrade Discord](https://discord.gg/p7nuUNVfP7)
+* 버그 제보 및 기능 제안: [GitHub Issues](https://github.com/freqtrade/freqtrade/issues)
