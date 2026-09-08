@@ -1,0 +1,251 @@
+/* ==========================================================================
+   FreqUI Premium Fintech Theme (모던 프리미엄 핀테크 테마)
+   바이낸스, 토스증권, 트레이딩뷰 스타일의 세련된 딥 다크 & 글래스모피즘 디자인
+   ========================================================================== */
+
+/* 1. 글로벌 테마 변수 및 기본 팔레트 재정의 */
+:root {
+  --ui-radius: 10px !important;
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif !important;
+}
+
+/* 🌙 딥 다크 모드 (미드나잇 블루 & 딥 블랙) */
+html.dark, body.dark, .dark {
+  --ui-bg: #0b0f19 !important;               /* 깊이감 있는 딥 미드나잇 네이비 */
+  --ui-bg-muted: #111827 !important;         /* 은은한 서브 배경 */
+  --ui-bg-elevated: #161f30 !important;      /* 카드 및 패널 배경 */
+  --ui-bg-accented: #1e293b !important;      /* 호버 및 액센트 배경 */
+  --ui-border: rgba(255, 255, 255, 0.08) !important;
+  --ui-border-muted: rgba(255, 255, 255, 0.05) !important;
+  --ui-border-accented: rgba(99, 102, 241, 0.3) !important;
+  --ui-text-highlighted: #ffffff !important;
+  --ui-text: #e2e8f0 !important;
+  --ui-text-muted: #94a3b8 !important;
+  --ui-text-dimmed: #64748b !important;
+}
+
+/* ☀️ 라이트 모드 (애플 & 토스 스타일 클린 화이트) */
+html:not(.dark), body:not(.dark) {
+  --ui-bg: #f8fafc !important;
+  --ui-bg-muted: #f1f5f9 !important;
+  --ui-bg-elevated: #ffffff !important;
+  --ui-bg-accented: #e2e8f0 !important;
+  --ui-border: rgba(0, 0, 0, 0.08) !important;
+  --ui-border-muted: rgba(0, 0, 0, 0.05) !important;
+  --ui-border-accented: rgba(99, 102, 241, 0.3) !important;
+  --ui-text-highlighted: #0f172a !important;
+  --ui-text: #334155 !important;
+  --ui-text-muted: #64748b !important;
+  --ui-text-dimmed: #94a3b8 !important;
+}
+
+/* 2. 전역 배경 및 스크롤바 미려화 */
+body {
+  background-color: var(--ui-bg) !important;
+  color: var(--ui-text) !important;
+  letter-spacing: -0.015em !important;
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(99, 102, 241, 0.04) 0px, transparent 50%),
+    radial-gradient(at 90% 90%, rgba(16, 185, 129, 0.03) 0px, transparent 50%) !important;
+  background-attachment: fixed !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* 3. 헤더 & 네비게이션 바 (글래스모피즘 Blur 적용) */
+header, nav, .sticky.top-0 {
+  background: rgba(11, 15, 25, 0.82) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* 네비게이션 링크 버튼 호버 및 활성화 스타일 */
+nav a, header a, nav button, header button {
+  border-radius: 8px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-weight: 500 !important;
+}
+
+nav a:hover, header a:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  transform: translateY(-1px);
+}
+
+/* 4. 카드(Card) & 위젯 패널 - 프리미엄 라운딩 및 네온 보더 */
+.rounded-sm, .rounded, .rounded-md, .rounded-lg, .rounded-xl,
+[class*="border"][class*="rounded"] {
+  border-radius: 12px !important;
+}
+
+/* 대시보드 카드 및 데이터 박스 */
+div[class*="border border-neutral-400"],
+div[class*="border rounded-sm border-neutral-400"],
+.vue-grid-item,
+div[class*="bg-elevated"] {
+  background: rgba(22, 31, 48, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.15) !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+div[class*="border border-neutral-400"]:hover,
+div[class*="border rounded-sm border-neutral-400"]:hover,
+.vue-grid-item:hover {
+  border-color: rgba(99, 102, 241, 0.35) !important;
+  box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.3), 0 0 15px -3px rgba(99, 102, 241, 0.15) !important;
+}
+
+/* 5. 비비드 핀테크 손익 컬러 (Vibrant Profit / Loss Indicator) */
+/* 수익 (Profit / Up) */
+.text-green-500, .text-emerald-500, [class*="text-green"], [class*="text-emerald"],
+span:has(> [class*="text-green"]), span:has(> [class*="text-emerald"]) {
+  color: #10b981 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+}
+
+/* 손실 (Loss / Down) */
+.text-red-500, [class*="text-red"],
+span:has(> [class*="text-red"]) {
+  color: #f43f5e !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 12px rgba(244, 63, 94, 0.35);
+}
+
+/* 6. 버튼(Button) 모던 스타일 & 그라데이션 */
+button {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+button:active {
+  transform: scale(0.97) !important;
+}
+
+/* 주요 액션 버튼 (Primary Button) */
+button[class*="bg-primary"] {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4) !important;
+}
+button[class*="bg-primary"]:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6) !important;
+  transform: translateY(-1px);
+}
+
+/* 청산/정지 버튼 (Danger Button) */
+button[class*="bg-error"], button:has(svg[class*="text-red"]), button:has(svg[class*="text-error"]) {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(244, 63, 94, 0.35) !important;
+}
+button[class*="bg-error"]:hover {
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 100%) !important;
+  box-shadow: 0 6px 20px rgba(244, 63, 94, 0.5) !important;
+}
+
+/* 성공/시작 버튼 (Success Button) */
+button[class*="bg-success"], button:has(svg[class*="text-green"]) {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35) !important;
+}
+
+/* 7. 테이블(Table) 디자인 개선 */
+table {
+  border-collapse: separate !important;
+  border-spacing: 0 4px !important;
+}
+
+thead th {
+  background: rgba(17, 24, 39, 0.6) !important;
+  color: #94a3b8 !important;
+  font-size: 0.825rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 10px 14px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+tbody tr {
+  background: rgba(22, 31, 48, 0.5) !important;
+  border-radius: 8px !important;
+  transition: all 0.15s ease !important;
+}
+
+tbody tr:hover {
+  background: rgba(30, 41, 59, 0.8) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+tbody td {
+  padding: 12px 14px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+tbody td:first-child {
+  border-top-left-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+tbody td:last-child {
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+/* 8. 뱃지 & 태그 (Pill Badge) */
+span[class*="rounded-full"], .badge, [class*="px-2"][class*="py-0.5"] {
+  border-radius: 9999px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  padding: 3px 9px !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* 9. 입력 필드 & 셀렉트 박스 (Input Fields) */
+input, select, textarea {
+  border-radius: 8px !important;
+  background: rgba(17, 24, 39, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f1f5f9 !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+  outline: none !important;
+}
+
+/* 10. 차트 컨테이너 하이라이트 */
+div[class*="CandleChart"], .echarts-container {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
