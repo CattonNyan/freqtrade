@@ -235,12 +235,11 @@
     [/Profit:\s*/g, "실현 손익: "]
   ];
 
-  // 폰트 및 한국어 가독성 CSS 주입
+  // 폰트 설정 (가독성 높은 Pretendard)
   const style = document.createElement("style");
   style.textContent = `
-    body, html, input, button, select, textarea, div, span, p, a, table, th, td, h1, h2, h3, h4, h5, h6, label {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif !important;
-      word-break: keep-all;
+    body, html, input, button, select, textarea {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif !important;
     }
   `;
   document.head.appendChild(style);
