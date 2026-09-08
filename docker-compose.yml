@@ -6,6 +6,7 @@ services:
     container_name: freqtrade
     volumes:
       - "./user_data:/freqtrade/user_data"
+      - "./freqtrade/rpc/api_server/ui/installed:/freqtrade/freqtrade/rpc/api_server/ui/installed"
     env_file:
       - path: .env
         required: false

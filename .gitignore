@@ -24,6 +24,8 @@ user_data/hyperopts/*
 freqtrade-plot.html
 freqtrade-profit-plot.html
 freqtrade/rpc/api_server/ui/*
+!freqtrade/rpc/api_server/ui/installed
+!freqtrade/rpc/api_server/ui/installed/**
 build_helpers/ta-lib/*
 
 # Macos related
